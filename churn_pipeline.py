@@ -100,6 +100,8 @@ try:
 
     xgb_estimator = XGBoost(
         entry_point="train.py",
+        source_dir=".",  # 👈 This points to the folder where train.py and requirements.txt are
+        dependencies=["requirements.txt"],  # 👈 This tells SageMaker to install your packages
         role=role,
         instance_type="ml.m5.xlarge",
         instance_count=1,
