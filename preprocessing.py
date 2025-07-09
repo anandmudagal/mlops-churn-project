@@ -3,6 +3,7 @@ import os
 import logging
 import sys
 from datetime import datetime
+from sklearn.model_selection import train_test_split
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -61,8 +62,12 @@ def preprocess():
             logger.info(f"Encoded categorical column: {col}")
 
         # Split data (stratified by Churn)
-        train_df = df.sample(frac=0.8, random_state=42, weights='Churn')
-        val_df = df.drop(train_df.index)
+        train_df, val_df = train_test_split(
+                      df,
+                    test_size=0.2,
+                     stratify=df['Churn'],
+                random_state=42
+)
 
         # Save processed data
         train_df.to_csv(train_path, index=False)
