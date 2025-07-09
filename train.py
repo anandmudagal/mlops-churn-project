@@ -64,7 +64,15 @@ def train():
         parser.add_argument('--train', type=str, default=os.environ.get('SM_CHANNEL_TRAIN'))
         parser.add_argument('--validation', type=str, default=os.environ.get('SM_CHANNEL_VALIDATION'))
         parser.add_argument('--model_dir', type=str, default=os.environ.get('SM_MODEL_DIR'))
+
+        # Accept SageMaker hyperparameters
+        parser.add_argument('--eval_metric', type=str, default='logloss')
+        parser.add_argument('--objective', type=str, default='binary:logistic')
+        parser.add_argument('--seed', type=int, default=42)
+        parser.add_argument('--use_label_encoder', type=bool, default=False)
+
         args = parser.parse_args()
+
         
         # Paths
         train_path = os.path.join(args.train, "train.csv")
@@ -85,11 +93,11 @@ def train():
         
         # Parameters
         params = {
-            "objective": "binary:logistic",
-            "eval_metric": "logloss",
-            "use_label_encoder": False,
-            "seed": 42
-        }
+            "objective": args.objective,
+            "eval_metric": args.eval_metric,
+            "use_label_encoder": args.use_label_encoder,
+            "seed": args.seed
+            }
         
         # Start MLflow run
         with mlflow.start_run() as run:
