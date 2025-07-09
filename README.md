@@ -131,8 +131,8 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```bash
 eksctl create cluster \
   --name churnmodel \
-  --region ap-south-1 \
-  --zones ap-south-1a,ap-south-1b \
+  --region us-east-1 \
+  --zones us-east-1a,us-east-1b \
   --nodegroup-name churn-ng-public1 \
   --node-type t3.medium \
   --nodes 2 \
