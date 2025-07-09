@@ -20,8 +20,8 @@ logger = logging.getLogger(__name__)
 # Environment setup
 region = boto3.Session().region_name
 session = PipelineSession()
-role = "arn:aws:iam::911167906047:role/SageMakerChurnRole"
-bucket = "mlops-churn-model-artifacts"
+role = "arn:aws:iam::879381269505:role/SageMakerchurnRole"
+bucket = "mlops-churn-model-artifacts1"
 
 # Verify S3 bucket exists
 s3 = boto3.client('s3')
@@ -114,7 +114,7 @@ try:
             "seed": 42
         },
         environment={
-            "MLFLOW_TRACKING_URI": "http://13.204.87.29:32386/",
+            "MLFLOW_TRACKING_URI": "http://127.0.0.1:5000/",
             "MLFLOW_EXPERIMENT_NAME": "ChurnPrediction"
         },
         base_job_name="churn-train"
@@ -148,7 +148,7 @@ try:
         role=role,
         sagemaker_session=session,
         env={
-            "MLFLOW_TRACKING_URI": "http://13.204.87.29:32386/",
+            "MLFLOW_TRACKING_URI": "http://127.0.0.1:5000/",
             "MLFLOW_EXPERIMENT_NAME": "ChurnPrediction"
         }
     )
