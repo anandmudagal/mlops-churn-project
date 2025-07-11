@@ -116,7 +116,7 @@ try:
             "seed": 42
         },
         environment={
-            "MLFLOW_TRACKING_URI": "http://aa5f9fd933f77493db37cd031bcb8710-1285918822.us-east-1.elb.amazonaws.com:5000/",
+            "MLFLOW_TRACKING_URI": "http://a4ac2eeb7fdb54359b46e50bf855bf56-210721143.us-east-1.elb.amazonaws.com:5000/",
             "MLFLOW_EXPERIMENT_NAME": "ChurnPrediction"
         },
         base_job_name="churn-train"
@@ -150,7 +150,7 @@ try:
         role=role,
         sagemaker_session=session,
         env={
-            "MLFLOW_TRACKING_URI": "http://aa5f9fd933f77493db37cd031bcb8710-1285918822.us-east-1.elb.amazonaws.com:5000/",
+            "MLFLOW_TRACKING_URI": "http://a4ac2eeb7fdb54359b46e50bf855bf56-210721143.us-east-1.elb.amazonaws.com:5000/",
             "MLFLOW_EXPERIMENT_NAME": "ChurnPrediction"
         }
     )
